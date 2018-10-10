@@ -23,7 +23,7 @@ function feedCounties() {
             .toUpperCase();
           axios
             .post(
-              "https://atlaensino.com/api/profile/county-institutional",
+              "http://localhost:3000/api/profile/county-institutional",
               county
             )
             .then(res => {
@@ -35,7 +35,7 @@ function feedCounties() {
                   // console.log(element);
                   axios
                     .post(
-                      "https://atlaensino.com/api/profile/school-institutional",
+                      "http://localhost:3000/api/profile/school-institutional",
                       {
                         // inep_properties: schools[element],
                         county_id: county_id,
@@ -57,7 +57,7 @@ function feedCounties() {
                     console.log(county_id);
                     axios
                       .post(
-                        "https://atlaensino.com/api/profile/school-institutional",
+                        "http://localhost:3000/api/profile/school-institutional",
                         {
                           inep_properties: {},
                           county_id: county_id,
@@ -74,7 +74,7 @@ function feedCounties() {
                           let infos = t[id]["infos"];
                           // console.log(infos);
                           axios
-                            .post("https://atlaensino.com/api/classroom", {
+                            .post("http://localhost:3000/api/classroom", {
                               school: schoolResponse.data.id_profile,
                               external_id: e["codigo"],
                               course: infos["Curso"],
@@ -88,7 +88,7 @@ function feedCounties() {
                               alunos.forEach(a => {
                                 axios
                                   .post(
-                                    "https://atlaensino.com/api/enrollment/externalfeed",
+                                    "http://localhost:3000/api/enrollment/externalfeed",
                                     {
                                       classroom: response.data._id,
                                       a: a
