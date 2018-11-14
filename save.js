@@ -7,7 +7,7 @@ const paranaIdebJson = require("./data/teste.json");
 axios.defaults.headers.post["Content-Type"] =
   "application/x-www-form-urlencoded";
 
-const API = "http://localhost:3000/api"
+const API = "http://localhost:3000/api";
 
 function feedCounties() {
   statesJson.forEach(async state => {
@@ -24,25 +24,20 @@ function feedCounties() {
             .replace(/[\u0300-\u036f]/g, "")
             .toUpperCase();
           axios
-            .post(
-              API + "/profile/county-institutional",
-              county
-            )
+            .post(API + "/profile/county-institutional", county)
             .then(res => {
               county_id = res.data.data.id;
               schools = paranaIdebJson["PARANÁ"][county.name];
-              if (schools /*  && county.name !== "CAMPO MOURAO" */ ) {
+              if (schools /*  && county.name !== "CAMPO MOURAO" */) {
                 schoolsNames = Object.keys(schools);
                 schoolsNames.forEach(async element => {
                   // console.log(element);
                   axios
-                    .post(
-                      API + "/profile/school-institutional", {
-                        // inep_properties: schools[element],
-                        county_id: county_id,
-                        name: element
-                      }
-                    )
+                    .post(API + "/profile/school-institutional", {
+                      // inep_properties: schools[element],
+                      county_id: county_id,
+                      name: element
+                    })
                     .then(resSchool => {
                       console.log(resSchool.data);
                     })
@@ -57,13 +52,11 @@ function feedCounties() {
                     console.log(e["nome"]);
                     console.log(county_id);
                     axios
-                      .post(
-                        API + "/profile/school-institutional", {
-                          inep_properties: {},
-                          county_id: county_id,
-                          name: e["nome"]
-                        }
-                      )
+                      .post(API + "/profile/school-institutional", {
+                        inep_properties: {},
+                        county_id: county_id,
+                        name: e["nome"]
+                      })
                       .then(schoolResponse => {
                         console.log(Object.keys(e));
                         console.log(schoolResponse);
@@ -83,25 +76,23 @@ function feedCounties() {
                               series: infos["Seriação"],
                               hour: infos["Horário"]
                             })
-                            .then(function (response) {
+                            .then(function(response) {
                               let alunos = t[id]["alunos"];
                               alunos.forEach(a => {
                                 axios
-                                  .post(
-                                    API + "/enrollment/externalfeed", {
-                                      classroom: response.data._id,
-                                      a: a
-                                    }
-                                  )
-                                  .then(function (response) {
+                                  .post(API + "/enrollment/externalfeed", {
+                                    classroom: response.data._id,
+                                    a: a
+                                  })
+                                  .then(function(response) {
                                     // console.log(response.data);
                                   })
-                                  .catch(function (error) {
+                                  .catch(function(error) {
                                     console.log(error);
                                   });
                               });
                             })
-                            .catch(function (error) {
+                            .catch(function(error) {
                               console.log(error);
                             });
                         });
