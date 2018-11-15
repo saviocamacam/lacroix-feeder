@@ -23,7 +23,8 @@ function readTextFile(file, callback) {
     // console.log(infos);
     let students = JSON.stringify(turma[idTurma]["alunos"]);
     students = students.replace(/\./g, "");
-    console.log(infos["diasFuncionamento"]);
+    students = JSON.parse(students);
+
     axios
       .post(
         "http://localhost:3000/api/classroom",
@@ -35,12 +36,12 @@ function readTextFile(file, callback) {
           series: infos["Seriação"],
           hour: infos["Horário"],
           days: infos["diasFuncionamento"],
-          students: JSON.parse(students)
+          external_id: idTurma
         },
         headers
       )
-      .then(function(response) {
-        console.log(response);
+      .then(res => {
+        console.log(res);
       })
       .catch(err => {
         // console.log(err);
