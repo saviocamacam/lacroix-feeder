@@ -4,11 +4,13 @@ let axios = require("axios");
 axios.defaults.headers.post["Content-Type"] =
   "application/x-www-form-urlencoded";
 
-let idSchool = "5bde065cf4165438e4ba286f";
+let idSchool = "5ba9517bbde4ef0013e30f56";
+let apiUrl = "https://www.atlaensino.com/api";
+let nome_escola = "CONSTANTINO L DE MEDEIROS, E M-EI EF";
 let headers = {
   headers: {
     "x-access-token":
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InByb2ZpbGVzIjpbeyJwcm9maWxlVHlwZSI6IlByb2ZpbGVQcm9mZXNzb3IiLCJfaWQiOiI1YmRlMGNiNmY0MTY1NDM4ZTRiYTI4NzYifSx7InByb2ZpbGVUeXBlIjoiUHJvZmlsZUNvdW50eSIsIl9pZCI6IjViZWFiMTRiYTI3YWE1NTQyMDExMWM0OCJ9XSwiX2lkIjoiNWJkZTA3ZjRmNDE2NTQzOGU0YmEyODc1Iiwic2hvcnROYW1lIjoic2F2aW9jYW1hY2FtIiwicGVvcGxlIjp7Il9pZCI6IjViZGUwN2Y0ZjQxNjU0MzhlNGJhMjg3NCIsIm5hbWUiOiJTYXZpbyBkZSBPbGl2ZWlyYSBDYW1hY2FtIn19LCJpYXQiOjE1NDIxMjE2MzgsImV4cCI6MTU0MjI5NDQzOH0.jaCfDCMGi9r2L7dGtsDQtJ6aOzkqngvsC_B_i5OFmhk"
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InByb2ZpbGVzIjpbeyJwcm9maWxlVHlwZSI6IlByb2ZpbGVQcm9mZXNzb3IiLCJfaWQiOiI1YmUwM2U0ZWI1NmVkODAwMTMzNTdjYTYifSx7InByb2ZpbGVUeXBlIjoiUHJvZmlsZVNjaG9vbCIsIl9pZCI6IjViZTRkNTRmNzVjZGIzMDAxMzY5MTQ5NyIsInJvbGUiOnsiX190IjoiUm9sZVNjaG9vbCIsIl9pZCI6IjViZTRkNTRmNzVjZGIzMDAxMzY5MTQ5NiIsInNjaG9vbCI6IjViYTk1MTdiYmRlNGVmMDAxM2UzMGY1NyIsInR5cGUiOiJwZWRBZHZpc29yIiwiX192IjowfX0seyJwcm9maWxlVHlwZSI6IlByb2ZpbGVDb3VudHkiLCJfaWQiOiI1YmY1OTg4MGNmOGYxMzAwMTM0YWFiNTUiLCJyb2xlIjp7Il9fdCI6IlJvbGVDb3VudHkiLCJfaWQiOiI1YmY1OTg4MGNmOGYxMzAwMTM0YWFiNTQiLCJjb3VudHkiOiI1YmE5NTE3YWJkZTRlZjAwMTNlMzBlYWUiLCJ0eXBlIjoicGVkQ2hpZWYiLCJfX3YiOjB9fSx7InByb2ZpbGVUeXBlIjoiUHJvZmlsZVNjaG9vbCIsIl9pZCI6IjViZjllNzIzNDE5YzI2MDAxM2MzODIyNCIsInJvbGUiOnsiX190IjoiUm9sZVNjaG9vbCIsIl9pZCI6IjViZjllNzIzNDE5YzI2MDAxM2MzODIyMyIsInNjaG9vbCI6IjViYTk1MTdjYmRlNGVmMDAxM2UzMGY3YiIsInR5cGUiOiJwZWRBZHZpc29yIiwiX192IjowfX0seyJwcm9maWxlVHlwZSI6IlByb2ZpbGVTY2hvb2wiLCJfaWQiOiI1YmZkYjQxZmI2OWFmNDAwMTNlZWUzZmEiLCJyb2xlIjp7Il9fdCI6IlJvbGVTY2hvb2wiLCJfaWQiOiI1YmZkYjQxZmI2OWFmNDAwMTNlZWUzZjkiLCJzY2hvb2wiOiI1YmE5NTE3Y2JkZTRlZjAwMTNlMzBmODkiLCJ0eXBlIjoic3ViZGlyZWN0b3IiLCJfX3YiOjB9fV0sIl9pZCI6IjViYTk3MTk2YmRlNGVmMDAxM2UzMGY5NyIsIm1haW5QaG9uZSI6IjViYTk3MTM4YmRlNGVmMDAxM2UzMGY5NCIsInNob3J0TmFtZSI6InNhdmlvY2FtYWNhbSIsInBlb3BsZSI6eyJfaWQiOiI1YmE5NzE5NmJkZTRlZjAwMTNlMzBmOTYiLCJuYW1lIjoiU2F2aW8gZGUgT2xpdmVpcmEgQ2FtYWNhbSJ9LCJtYWluUHJvZmlsZSI6IjViZTAzZTRlYjU2ZWQ4MDAxMzM1N2NhNiJ9LCJpYXQiOjE1NDMzNTMzNzYsImV4cCI6MTU0NDIxNzM3Nn0.dXiCbQ3wQGfBEaQZcKQg32ksCPZIDuWoYTlwredQbMc"
   }
 };
 
@@ -23,7 +25,7 @@ Array.prototype.indexOfId = function(id) {
 
 function feed_enrollments(nomeEscola) {
   axios
-    .get(`http://localhost:3000/api/classroom?school=${idSchool}`, headers)
+    .get(`${apiUrl}/classroom?school=${idSchool}`, headers)
     .then(res => {
       classrooms = res.data.data;
       classrooms.forEach(classroom => {
@@ -51,7 +53,7 @@ function feed_enrollments(nomeEscola) {
 
           axios
             .post(
-              "http://localhost:3000/api/enrollment",
+              `${apiUrl}/enrollment`,
               {
                 basic: student,
                 filiacao: filiacao,
@@ -75,4 +77,4 @@ function feed_enrollments(nomeEscola) {
     });
 }
 
-feed_enrollments("PARIGOT DE SOUZA, E M-EI EF");
+feed_enrollments(nome_escola);
